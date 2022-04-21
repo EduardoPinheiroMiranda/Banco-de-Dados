@@ -1,5 +1,5 @@
 create database aulabd;
-
+use aulabd;
 create table RESPOSTAS(
 	NumQuestão int(2) primary key not null,
 	DescResposta varchar(500) not null
