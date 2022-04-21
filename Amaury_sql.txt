@@ -1,0 +1,159 @@
+create database aulabd;
+
+create table RESPOSTAS(
+	NumQuestão int(2) primary key not null,
+	DescResposta varchar(500) not null
+    	);
+
+create table PROFESSOR(
+    id int primary key auto_increment,
+    codigo int,
+    nome varchar(40) not null,
+    cpf varchar(12) not null,
+    email text,
+    titulacao text,
+    fone varchar(15),
+    sexo varchar(1) not null
+    );
+/*inserindo professores*/
+insert into PROFESSOR(codigo,nome,cpf,sexo) value('10','Amaury','12345678911','m');
+
+insert into PROFESSOR(codigo,nome,cpf,fone,sexo) value('04','Nielson','99987654321','33984919191','m');
+
+insert into PROFESSOR(codigo,nome,cpf,fone,sexo) value('05','Yvssa','12345678911','33984121212','f');
+
+
+/*inserindo respostas*/
+insert into RESPOSTAS(NumQuestão, DescResposta) value('2','chave primaria, caracteriza um campo identificador unico dentro da tabela');
+
+insert into RESPOSTAS(NumQuestão, DescResposta) value('3','chave estrangera, faz a ponte entre duas tabelas ou mais para haver relação de dados');
+
+insert into RESPOSTAS(NumQuestão, DescResposta) value('4','criate table CURSO( id int, descricao varchar);');
+/*----------------------------------------------------*/
+CREATE TABLE CURSO(
+  ID INT PRIMARY KEY AUTO_INCREMENT,
+  DESCRICAO VARCHAR(50)
+);
+/*----------------------------------------------------*/
+
+insert into RESPOSTAS(NumQuestão, DescResposta) value('5','criate table ALUNO( id int, nome varchar(50), matricula varchar, estado varchar(20),sexo varchar(9), fk_curso);');
+
+/*---------------------------------------------------*/
+
+CREATE TABLE ALUNOS(
+  ID INT PRIMARY KEY AUTO_INCREMENT,
+  NOME VARCHAR(50),
+  MATRICULA VARCHAR(15),
+  ESTADO VARCHAR(50),
+  SEXO VARCHAR(9),
+  FK_CURSO INT
+);
+
+ALTER TABLE ALUNOS ADD FOREIGN KEY(FK_CURSO)
+REFERENCES CURSO(ID);
+
+/*---------------------------------------------------*/
+
+insert into RESPOSTAS(NumQuestão, DescResposta) value('6','alter table ALUNO add email varchar(50);');
+
+insert into RESPOSTAS(NumQuestão, DescResposta) value('7','alter table PROFESSOR drop fone;');
+
+insert into RESPOSTAS(NumQuestão, DescResposta) value('8','update PROFESSOR set campoAlterado=\'novoValor\' where sexo=\'m\';');
+
+insert into RESPOSTAS(NumQuestão, DescResposta) value('9','delete from PROFESSOR where sexo=\'f\';');
+
+insert into RESPOSTAS(NumQuestão, DescResposta) value('10','select nome, matricula from ALUNO');
+
+insert into RESPOSTAS(NumQuestão, DescResposta) value('11','select* from PROFESSOR where sexo=\'m\';');
+
+
+/*CURSOS*/
+INSERT INTO CURSO(DESCRICAO) VALUE('SISTEMA DE INFORMAÇÃO');
+INSERT INTO CURSO(DESCRICAO) VALUE('ADMINISTRAÇÃO');
+INSERT INTO CURSO(DESCRICAO) VALUE('ENGENHARIA CIVIL');
+INSERT INTO CURSO(DESCRICAO) VALUE('ECONOMIA');
+INSERT INTO CURSO(DESCRICAO) VALUE('DIREITO');
+INSERT INTO CURSO(DESCRICAO) VALUE('CIENCIAS DA COMPUTAÇÃO');
+INSERT INTO CURSO(DESCRICAO) VALUE('ANALISE E DESENVOLVIMENTO DE SOFTWARE');
+
+/* ALUNOS*/
+INSERT INTO ALUNOS(NOME,MATRICULA,ESTADO,SEXO, FK_CURSO) VALUE('EDUARDO','123','MG','M','1');
+INSERT INTO ALUNOS(NOME,MATRICULA,ESTADO,SEXO, FK_CURSO) VALUE('RICARDO','124','MG','M','3');
+INSERT INTO ALUNOS(NOME,MATRICULA,ESTADO,SEXO, FK_CURSO) VALUE('MARCIA','125','MG','F','2');
+INSERT INTO ALUNOS(NOME,MATRICULA,ESTADO,SEXO, FK_CURSO) VALUE('CARLOS','126','MG','M','3');
+INSERT INTO ALUNOS(NOME,MATRICULA,ESTADO,SEXO, FK_CURSO) VALUE('GUSTAVO','127','MG','M','1');
+INSERT INTO ALUNOS(NOME,MATRICULA,ESTADO,SEXO, FK_CURSO) VALUE('PEDRO LUCAS','128','MG','M','1');
+INSERT INTO ALUNOS(NOME,MATRICULA,ESTADO,SEXO, FK_CURSO) VALUE('CLEITON','129','MG','M','4');
+
+create table ESTADO(
+  Id_estado int primary key auto_increment,
+  Nome_estado varchar(50),
+  UF varchar(2)
+);
+
+create table CIDADE(
+  id_cidade int primary key auto_increment,
+  Rua varchar(50),
+  Bairro varchar(50),
+  Numero varchar(50),
+  Cidade varchar(50),
+  Fk_Estado int
+);
+
+alter table CIDADE add foreign key(Fk_Estado)
+references ESTADO(id_estado);
+
+insert into ESTADO(Nome_Estado,UF) value('Minas Gerais','MG');
+insert into ESTADO(Nome_Estado,UF) value('São Paulo','SP');
+insert into ESTADO(Nome_Estado,UF) value('Rio de Janeiro','RJ');
+insert into ESTADO(Nome_Estado,UF) value('Espirito Santo','ES');
+
+insert into CIDADE(rua, bairro, Numero, cidade, Fk_Estado) value('jk','joão de lino','98','Padre Paraiso','1');
+insert into CIDADE(rua, bairro, Numero, cidade, Fk_Estado) value('juca de matos','joão de lino','150','Padre Paraiso','1');
+insert into CIDADE(rua, bairro, Numero, cidade, Fk_Estado) value('roberio','grça olinta','198','Consolação','3');
+insert into CIDADE(rua, bairro, Numero, cidade, Fk_Estado) value('birituba','Leonardo de CApio','928','Cubatão','2');
+insert into CIDADE(rua, bairro, Numero, cidade, Fk_Estado) value('Groselha','Bom Jesus','898','Gravetos','2');
+insert into CIDADE(rua, bairro, Numero, cidade, Fk_Estado) value('Pionera','Bom jacinto','698','Almenara','1');
+insert into CIDADE(rua, bairro, Numero, cidade, Fk_Estado) value('rumo ao ceu','Bons sonhos','666','astalavista','4');
+insert into CIDADE(rua, bairro, Numero, cidade, Fk_Estado) value('figueredo','leopodina','159','NOVA VISSOSA','4');
+
+
+/*-----------------INSERINDO RESPOSTAS--------------------*/
+
+insert into RESPOSTAS(NumQuestão, DescResposta) value('12','select NOME, DESCRICAO from ALUNOS,CURSO where FK_CURSO=CURSO.ID;');
+
+insert into RESPOSTAS(NumQuestão, DescResposta) value('14','select cidade from CIDADE where cidade like\'a%\';');
+
+insert into RESPOSTAS(NumQuestão, DescResposta) value('15','select cidade,UF from CIDADE, ESTADO where Id_estado=Fk_estado and UF=\'MG\' group by cidade;');
+
+insert into RESPOSTAS(NumQuestão, DescResposta) value('16','select cidade,UF from CIDADE, ESTADO where Id_estado=Fk_estado group by cidade,UF;');
+
+insert into RESPOSTAS(NumQuestão, DescResposta) value('17','select cidade from CIDADE where cast(cidade as binary) = cast(lcase(cidade) as binary);');
+
+insert into RESPOSTAS(NumQuestão, DescResposta) value('18','select cidade from CIDADE where cast(cidade as binary) = cast(Ucase(cidade)as binary);');
+
+insert into RESPOSTAS(NumQuestão, DescResposta) value('18','select UF, count(cidade) as Total_cidade from CIDADE, ESTADO where Fk_Estado=Id_estado group by UF;');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
